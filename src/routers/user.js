@@ -24,7 +24,7 @@ router.post('/users/login', async (req, res) => {
     const token = await user.generateAuthToken();
     res.send({ user, token });
   } catch (e) {
-    res.status(400).send();
+    res.status(400).send('Invalid credentials');
   }
 });
 
@@ -35,9 +35,9 @@ router.post('/users/logout', auth, async (req, res) => {
     });
     await req.user.save();
 
-    res.send();
+    res.send('Logout successfull');
   } catch (e) {
-    res.status(500).send();
+    res.status(500).send(e);
   }
 });
 

@@ -97,6 +97,13 @@ userSchema.pre('save', async function (next) {
   next();
 });
 
+
+userSchema.virtual('category', {
+  ref: 'Category',
+  localField: '_id',
+  foreignField: 'owner'
+})
+
 const User = mongoose.model('User', userSchema);
 
 module.exports = User;
